@@ -7,6 +7,8 @@ public class TestMatrix {
     BufferedReader in;
     static int NMAX = 100100;
 
+    int n, m;
+
     public void run() {
         try {
             in = new BufferedReader(new InputStreamReader(System.in));
@@ -49,8 +51,8 @@ public class TestMatrix {
     }
  
     void solve() throws NumberFormatException, IOException {
-    	int n = nextInt();
-    	int m = nextInt();
+    	n = nextInt();
+    	m = nextInt();
     	double[][] mat = new double[n][m];
     	for (int i = 0; i < n; ++i) {
     		for (int j = 0; j < m; ++j) {
@@ -64,7 +66,18 @@ public class TestMatrix {
     	} catch (Exception e) {
     		e.printStackTrace();
     	}
-    	mat = testMatrix.getM();
+    	printMatrix(testMatrix.getM());
+    	System.out.println();
+
+    	try {
+    		testMatrix.eliminateUsingGaussJordanMethod();
+    	} catch (Exception e) {
+    		e.printStackTrace();
+    	}
+    	printMatrix(testMatrix.getM());
+    }
+
+    void printMatrix(double[][] mat) {
     	for (int i = 0; i < n; ++i) {
     		for (int j = 0; j < m; ++j) {
     			System.out.print(mat[i][j] + " ");

@@ -24,13 +24,10 @@ public class Matrix {
 
   public void eliminateUsingGaussMethod() throws Exception{
     for (int k = 0; k < Math.min(n,m); ++k) {
-      System.out.println("ASD");
       int i_max = k;
       for (int i = k+1; i < n; ++i) {
-        System.out.println(i_max + " " + i);
         i_max = Math.abs(M[i][k]) - Math.abs(M[i_max][k]) > eps ? i : i_max;
       }
-      System.out.println("ASDsad");
       if (M[i_max][k] == 0) {
         throw new Exception("Matrix is singular!");
       }
@@ -42,12 +39,31 @@ public class Matrix {
         M[i][k] = 0;
       }
     }
-  } 
+  }
 
   public void swapRow(int a, int b) {
     double[] tmp;
     tmp = M[a];
     M[a] = M[b];
     M[b] = tmp;
+  }
+
+  public void eliminateUsingGaussJordanMethod() throws Exception{
+    eliminateUsingGaussMethod();
+    for (int k = 0; k < Math.min(n,m); ++k) {
+      double tmp = 1/M[k][k];
+      for (int i = k+1; i < m; ++i) {
+        M[k][i] *= tmp;
+      }
+      M[k][k] = 1;
+    }
+    for (int k = 1; k < Math.min(n,m); ++k) {
+      for (int i = 0; i < k; ++i) {
+        for (int j = k+1; j < m; ++j) {
+          M[i][j]  = M[i][j] - M[k][j] * (M[i][k] / M[k][k]);
+        }
+        M[i][k] = 0;
+      }
+    }
   }
 }
