@@ -18,8 +18,16 @@ public class Matrix {
     this.M = M;
   }
 
+  public void setEl(int i, int j, double x) {
+    M[i][j] = x;
+  }
+
   public double[][] getM() {
     return M;
+  }
+
+  public double getEl(int i, int j) {
+    return M[i][j];
   }
 
   public void eliminateUsingGaussMethod() throws Exception{
