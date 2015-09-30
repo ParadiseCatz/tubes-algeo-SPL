@@ -36,5 +36,8 @@ public class InputReader{
         return nextToken();
     }
 	
+    char nextChar() throws IOException {
+        return (char)in.read();
+    }
 	
 }
