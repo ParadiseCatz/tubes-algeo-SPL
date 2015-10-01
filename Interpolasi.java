@@ -25,6 +25,7 @@ public class Interpolasi {
 
 		}
 		persamaan.setMatriks(m);
+		in.close();
 	}
 
 	public void solve() {
