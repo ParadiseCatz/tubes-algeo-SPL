@@ -25,7 +25,7 @@ public class SistemPersamaanLinear{
 	public void read(InputReader in) throws IOException {
 		
 		
-		for (int i=1;i<=this.jmlPersamaan;i++) {
+		for (int i=1;i<=jmlPersamaan;i++) {
 			double num = in.nextDouble();
 			String var = in.nextString();
 			String op = in.nextString();
@@ -38,16 +38,19 @@ public class SistemPersamaanLinear{
 				
 			}
 			while (op!="=" && in.tokenizer.hasMoreTokens()) {
+				matriks.setEl(i,mapVariabel.get(var),num);
 				num = in.nextDouble();
 				var = in.nextString();
 				op = in.nextString();
 				
 				if (!mapVariabel.containsKey(var)) {
 					mapVariabel.put(var,cnt);
-					matriks.setEl(i,mapVariabel.get(var),num);
+					
 					++ cnt;
 				}
+
 			}
+			matriks.setEl(i,jmlVariabel,num);
 		}
 		
 	}
