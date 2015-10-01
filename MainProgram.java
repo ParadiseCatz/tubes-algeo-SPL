@@ -11,7 +11,6 @@ public class MainProgram {
 
 	void run() throws Exception {
 		init();
-		launchSettings();
 		launchMenu();
 	}
 
@@ -62,33 +61,31 @@ public class MainProgram {
 		System.out.println("1. Menyelesaikan Matriks");
 		System.out.println("2. Menyelesaikan SPL");
 		System.out.println("3. Menyelesaikan Interpolasi");
-		System.out.println("4. Settings");
-		System.out.println("5. About");
-		System.out.println("6. Exit");
+		System.out.println("4. About");
+		System.out.println("5. Exit");
 		System.out.print("Pilihan Anda: ");
 		inputInt = mainProgramReader.nextInt();
 		switch (inputInt) {
 			case 1: {
+				launchSettings();
 				launchMatriks();
 				break;
 			}
 			case 2: {
+				launchSettings();
 				launchSPL();
 				break;
 			}
 			case 3: {
+				launchSettings();
 				launchInterpolasi();
 				break;
 			}
 			case 4: {
-				launchSettings();
-				break;
-			}
-			case 5: {
 				launchAbout();
 				break;
 			}
-			case 6: {
+			case 5: {
 				mainProgramReader.close();
 				inputReader.close();
 				outputWriter.close();
@@ -100,7 +97,7 @@ public class MainProgram {
 			}
 		}
 		System.out.println("Press Enter to continue.");
-		inputReader.nextChar();
+		mainProgramReader.nextChar();
 		launchMenu();
 	}
 
@@ -161,7 +158,7 @@ public class MainProgram {
 			}
 			case 2: {
 				System.out.println("Masukkan X: ");
-				double x = inputReader.nextDouble();
+				double x = mainProgramReader.nextDouble();
 				double y = interpolasi.findY(x);
 				System.out.println("Y bernilai " + y);
 				break;
