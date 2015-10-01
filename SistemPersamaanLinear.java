@@ -7,6 +7,7 @@ public class SistemPersamaanLinear{
 	private Matrix matriks;
 	private TreeMap <String,Integer> mapVariabel;
 	private boolean solved;
+	private String[] listVariabel;
 	
 	public SistemPersamaanLinear(int jmlVariabel, int jmlPersamaan){
 		this.jmlVariabel = jmlVariabel;
@@ -14,6 +15,7 @@ public class SistemPersamaanLinear{
 		matriks = new Matrix(jmlPersamaan,jmlVariabel+1);
 		mapVariabel = new TreeMap<String,Integer>();
 		solved = false;
+		listVariabel = new String[jmlVariabel];
 	}
 	
 	public Matrix getMatriks(){
@@ -26,14 +28,15 @@ public class SistemPersamaanLinear{
 
 	public void read(InputReader in) throws IOException {
 		
+		int cnt = 0;
 		for (int i=0;i<jmlPersamaan;i++) {
 			double num = in.nextDouble();
 			String var = in.nextString();
 			String op = in.nextString();
-			Integer cnt = 0;
 			
 			if (!mapVariabel.containsKey(var)) {
 				mapVariabel.put(var,cnt);
+				listVariabel[cnt] = var;
 				++ cnt;
 				
 			}
@@ -45,7 +48,7 @@ public class SistemPersamaanLinear{
 				
 				if (!mapVariabel.containsKey(var)) {
 					mapVariabel.put(var,cnt);
-					
+					listVariabel[cnt] = var;
 					++ cnt;
 				}
 				matriks.setEl(i,mapVariabel.get(var),num);
@@ -55,6 +58,14 @@ public class SistemPersamaanLinear{
 			matriks.setEl(i,jmlVariabel,num);
 		}
 		
+		int cntFiller = 1;
+		for (; cnt < jmlVariabel; ++cnt) {
+			while (mapVariabel.containsKey("variabel" + cntFiller))
+				cntFiller++;
+			mapVariabel.put("variabel" + cntFiller,cnt);
+			listVariabel[cnt] = "variabel" + cntFiller;
+		}
+		in.close();
 	}
 	
 	public void solve() throws NumberFormatException, IOException {
@@ -69,18 +80,29 @@ public class SistemPersamaanLinear{
 
     }
 		
-	public void write(BufferedWriter writer) {
+	public void write(BufferedWriter writer) throws IOException {
 		if (solved) {
-			for(Map.Entry<String,Integer> entry : treeMap.entrySet()) {
-				String variableName = entry.getKey();
-				Integer row = entry.getValue();
+			for(int j = 0; j < Math.min(jmlVariabel, jmlPersamaan); ++j) {
+				String variableName = listVariabel[j];
+				Integer row = j;
 
-				System.out.println(variableName + " = ");
+				writer.write(variableName + " = ");
 
 				for (int i = Math.min(jmlVariabel, jmlPersamaan); i < jmlVariabel; ++i) {
-					
+					if (matriks.getEl(row, i) == 0) {
+						continue;
+					}
+					if (matriks.getEl(row, i) == 1) {
+						writer.write(listVariabel[i] + " + ");
+						continue;
+					}
+					writer.write(matriks.getEl(row, i) + listVariabel[i] + " + ");
 				}
+				writer.write(Double.toString(matriks.getEl(row, jmlVariabel)));
+				writer.newLine();
 			}
+			writer.flush();
+			writer.close();
 		} else {
 			System.out.println("Sistem Persamaan belum di selesaikan");
 		}
