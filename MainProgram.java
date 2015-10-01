@@ -27,7 +27,7 @@ public class MainProgram {
 			inputReader = new InputReader(new BufferedReader(new InputStreamReader(System.in)));
 		}
 		if (inputString.charAt(0) == 'f') {
-			System.out.print("Masukan nama file input: ");
+			System.out.print("Masukkan nama file input: ");
 			inputString = mainProgramReader.nextString();
 			try {
 				inputReader = new InputReader(new BufferedReader(new InputStreamReader(new FileInputStream(inputString))));				
@@ -106,11 +106,42 @@ public class MainProgram {
 	}
 
 	void launchSPL() {
-
+		System.out.println("--Masukkan Data--");
+		int jmlVariabel = inputReader.nextInt();
+		int jmlPersamaan = inputReader.nextInt();
+		SistemPersamaanLinear sistemPersamaanLinear = new SistemPersamaanLinear(jmlVariabel,jmlPersamaan);
+		sistemPersamaanLinear.read(inputReader);
+		sistemPersamaanLinear.solve();
+		System.out.println("---SISTEM PERSAMAAN LINEAR---");
+		sistemPersamaanLinear.write(outputWriter);
 	}
 
 	void launchInterpolasi() {
-
+		System.out.println("--Masukkan Data--");
+		int jmlTitik = inputReader.nextInt();
+		Interpolasi interpolasi = new Interpolasi(jmlTitik);
+		interpolasi.read(inputReader);
+		interpolasi.solve();
+		System.out.println("---INTERPOLASI---");
+		System.out.println("1. Tunjukkan persamaan di pilihan output");
+		System.out.println("2. Cari Y dengan X tertentu");
+		inputInt = mainProgramReader.nextInt();
+		switch (inputInt) {
+			case 1: {
+				interpolasi.write(outputWriter);
+				break;
+			}
+			case 2: {
+				System.out.println("Masukkan X: ");
+				double x = inputReader.nextDouble();
+				double y = interpolasi.findY(x);
+				System.out.println("Y bernilai " + y);
+				break;
+			}
+			default: {
+				System.out.println("Pilihan Salah!");
+			}
+		}
 	}
 
 	void launchAbout() {

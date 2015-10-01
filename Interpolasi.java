@@ -25,13 +25,14 @@ public class Interpolasi {
 
 		}
 		persamaan.setMatriks(m);
+		in.close();
 	}
 
 	public void solve() {
 		persamaan.solve();
 	}
 
-	public void write() {
+	public void write(BufferedWriter writer) {
 		writer.write(Double.toString(matriks[i][jmlTitik]));
 		for (int i=1;i<jmlTitik;i++)
 		{
