@@ -102,7 +102,29 @@ public class MainProgram {
 	}
 
 	void launchMatriks() {
-
+		System.out.println("--Masukkan Data--");
+		int jmlBaris = inputReader.nextInt();
+		int jmlKolom = inputReader.nextInt();
+		Matrix matriks = new Matrix(jmlBaris,jmlKolom);
+		matriks.read(inputReader);
+		System.out.println("--MATRIKS--");
+		System.out.println("1. Eliminasi menggunakan metode Gauss");
+		System.out.println("2. Eliminasi menggunakan metode Gauss-Jordan");
+		switch (inputInt) {
+			case 1: {
+				matriks.eliminateUsingGaussMethod();
+				matriks.write(outputWriter);
+				break;
+			}
+			case 2: {
+				matriks.eliminateUsingGaussJordanMethod();
+				matriks.write(outputWriter);
+				break;
+			}
+			default: {
+				System.out.println("Pilihan Salah!");
+			}
+		}
 	}
 
 	void launchSPL() {
