@@ -57,10 +57,9 @@ public class TestSistemPersamaanLinear {
     	m = nextInt();
     	SistemPersamaanLinear spl = new SistemPersamaanLinear(n,m);
         spl.read(new InputReader(new BufferedReader(new InputStreamReader(System.in))));
-
-        printMatrix(spl.getMatriks());
         spl.solve();
         printMatrix(spl.getMatriks());
+        spl.write(new BufferedWriter(new OutputStreamWriter(System.out)));
     }
 
     void printMatrix(Matrix mat) {
