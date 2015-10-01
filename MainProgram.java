@@ -89,6 +89,9 @@ public class MainProgram {
 				break;
 			}
 			case 6: {
+				mainProgramReader.close();
+				inputReader.close();
+				outputWriter.close();
 				System.exit(0);
 				break;
 			}
@@ -110,6 +113,7 @@ public class MainProgram {
 		System.out.println("--MATRIKS--");
 		System.out.println("1. Eliminasi menggunakan metode Gauss");
 		System.out.println("2. Eliminasi menggunakan metode Gauss-Jordan");
+		inputInt = mainProgramReader.nextInt();
 		switch (inputInt) {
 			case 1: {
 				matriks.eliminateUsingGaussMethod();
@@ -131,8 +135,10 @@ public class MainProgram {
 		System.out.println("--Masukkan Data--");
 		int jmlVariabel = inputReader.nextInt();
 		int jmlPersamaan = inputReader.nextInt();
+		System.out.println("--Masukkan Data--");
 		SistemPersamaanLinear sistemPersamaanLinear = new SistemPersamaanLinear(jmlVariabel,jmlPersamaan);
 		sistemPersamaanLinear.read(inputReader);
+		System.out.println("--Masukkan Data--");
 		sistemPersamaanLinear.solve();
 		System.out.println("---SISTEM PERSAMAAN LINEAR---");
 		sistemPersamaanLinear.write(outputWriter);
