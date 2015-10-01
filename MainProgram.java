@@ -27,7 +27,7 @@ public class MainProgram {
 			inputReader = new InputReader(new BufferedReader(new InputStreamReader(System.in)));
 		}
 		if (inputString.charAt(0) == 'f') {
-			System.out.print("Masukan nama file input: ");
+			System.out.print("Masukkan nama file input: ");
 			inputString = mainProgramReader.nextString();
 			try {
 				inputReader = new InputReader(new BufferedReader(new InputStreamReader(new FileInputStream(inputString))));				
@@ -120,11 +120,14 @@ public class MainProgram {
 		inputInt = mainProgramReader.nextInt();
 		switch (inputInt) {
 			case 1: {
-				launchMatriks();
+				interpolasi.write();
 				break;
 			}
 			case 2: {
-				launchSPL();
+				System.out.println("Masukkan X: ");
+				double x = inputReader.nextDouble();
+				double y = interpolasi.findY(x);
+				System.out.println("Y bernilai " + y);
 				break;
 			}
 			default: {
