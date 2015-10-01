@@ -106,7 +106,14 @@ public class MainProgram {
 	}
 
 	void launchSPL() {
-
+		System.out.println("--Masukkan Data--");
+		int jmlVariabel = inputReader.nextInt();
+		int jmlPersamaan = inputReader.nextInt();
+		SistemPersamaanLinear sistemPersamaanLinear = new SistemPersamaanLinear(jmlVariabel,jmlPersamaan);
+		sistemPersamaanLinear.read(inputReader);
+		sistemPersamaanLinear.solve();
+		System.out.println("---SISTEM PERSAMAAN LINEAR---");
+		sistemPersamaanLinear.write(outputWriter);
 	}
 
 	void launchInterpolasi() {
@@ -135,9 +142,6 @@ public class MainProgram {
 				System.out.println("Pilihan Salah!");
 			}
 		}
-		System.out.println("Press Enter to continue.");
-		inputReader.nextChar();
-		launchMenu();
 	}
 
 	void launchAbout() {
