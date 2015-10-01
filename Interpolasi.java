@@ -28,10 +28,14 @@ public class Interpolasi {
 	}
 
 	public void write() {
-		for (int i=0;i<jmlTitik;i++)
+		writer.write(Double.toString(matriks[i][jmlTitik]));
+		for (int i=1;i<jmlTitik;i++)
 		{
 			writer.write(" + " + matriks[i][jmlTitik] + " x^" + i);
 		}
-		writer.write(" = " + matriks[jmlTitik-1][jmlTitik])
+		writer.write(" = y");
+		writer.newLine();
+		writer.flush();
+		writer.close();
 	}
 }
