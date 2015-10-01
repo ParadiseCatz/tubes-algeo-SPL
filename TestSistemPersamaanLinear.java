@@ -64,7 +64,7 @@ public class TestSistemPersamaanLinear {
 
     void printMatrix(Matrix mat) {
         double[][] ar2d = mat.getM();
-    	for (int i = 0; i < m; ++i) {
+    	for (int i = 0; i < n; ++i) {
     		for (int j = 0; j <= n; ++j) {
     			System.out.print(ar2d[i][j] + " ");
     		}

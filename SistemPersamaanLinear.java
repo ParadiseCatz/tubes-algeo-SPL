@@ -67,15 +67,34 @@ public class SistemPersamaanLinear{
 		}
 	}
 	
-	public void solve() throws NumberFormatException, IOException {
+	public void solve() {
 
     	try {
     		matriks.eliminateUsingGaussJordanMethod();
-    		solved = true;
+    		if (jmlPersamaan == jmlVariabel)
+    			solved = true;
+    		if (jmlPersamaan > jmlVariabel) {
+				if (matriks.getEl(jmlVariabel, jmlVariabel) == 0)
+					solved = true;
+			}
     	} catch (Exception e) {
-    		e.printStackTrace();
+    		Matrix temp = new Matrix(jmlVariabel, jmlVariabel+1);
+    		for (int i = 0; i < jmlVariabel; ++i) {
+    			for (int j = 0; j <= jmlVariabel; ++j) {
+    				temp.setEl(i,j,matriks.getEl(i,j));
+    			}
+    		}
+    		matriks = temp;
+    		try {
+    			matriks.eliminateUsingGaussJordanMethod();
+    			solved = true;
+    		} catch (Exception ex) {
+    			ex.printStackTrace();
+    		}
+
     	}
 
+    	
 
     }
 		
