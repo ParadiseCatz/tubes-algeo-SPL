@@ -32,7 +32,7 @@ public class Interpolasi {
 		persamaan.solve();
 	}
 
-	public void write() {
+	public void write(BufferedWriter writer) {
 		writer.write(Double.toString(matriks[i][jmlTitik]));
 		for (int i=1;i<jmlTitik;i++)
 		{
