@@ -6,31 +6,32 @@ public class Interpolasi {
 	SistemPersamaanLinear persamaan = new SistemPersamaanLinear();
 
 	public void read(InputReader in) throws IOException {
+		Matrix m = new Matrix(jmlTitik-1,jmlTitik);
 		
-		
-		for (int i=1;i<=jmlTitik;i++) {
+		for (int i=0;i<jmlTitik;i++) {
 			double x = in.nextDouble();
 			double y = in.nextDouble();
+			double temp = 1;
 
-			for (int j=1;j<=jmlTitik;j++) {
-				setmatriks(i,j,temp);
+			for (int j=0;j<jmlTitik;j++) {
+				m.setEl(i,j,temp);
 				temp = temp * x;
 			}
-			setmatriks(i,jmlTitik+1,y);
+			m.setEl(i,jmlTitik,y);
 
 		}
-		
+		persamaan.setMatriks(m);
 	}
 
 	public void solve() {
 		persamaan.solve();
-
 	}
 
 	public void write() {
-		for (int i=1;i<=jmlTitik;i++)
+		for (int i=0;i<jmlTitik;i++)
 		{
-			//write matriks[i][jmlTitik+1] x^i
+			writer.write(" + " + matriks[i][jmlTitik] + " x^" + i);
 		}
+		writer.write(" = " + matriks[jmlTitik-1][jmlTitik])
 	}
 }
