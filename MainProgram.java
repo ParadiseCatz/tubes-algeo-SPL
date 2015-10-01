@@ -110,7 +110,30 @@ public class MainProgram {
 	}
 
 	void launchInterpolasi() {
-
+		int jmlTitik = inputReader.nextInt();
+		Interpolasi interpolasi = new Interpolasi(jmlTitik);
+		interpolasi.read(inputReader);
+		interpolasi.solve();
+		System.out.println("---INTERPOLASI---");
+		System.out.println("1. Tunjukkan persamaan");
+		System.out.println("2. Cari Y dengan X tertentu");
+		inputInt = mainProgramReader.nextInt();
+		switch (inputInt) {
+			case 1: {
+				launchMatriks();
+				break;
+			}
+			case 2: {
+				launchSPL();
+				break;
+			}
+			default: {
+				System.out.println("Pilihan Salah!");
+			}
+		}
+		System.out.println("Press Enter to continue.");
+		inputReader.nextChar();
+		launchMenu();
 	}
 
 	void launchAbout() {
