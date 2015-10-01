@@ -110,17 +110,18 @@ public class MainProgram {
 	}
 
 	void launchInterpolasi() {
+		System.out.println("--Masukkan Data--");
 		int jmlTitik = inputReader.nextInt();
 		Interpolasi interpolasi = new Interpolasi(jmlTitik);
 		interpolasi.read(inputReader);
 		interpolasi.solve();
 		System.out.println("---INTERPOLASI---");
-		System.out.println("1. Tunjukkan persamaan");
+		System.out.println("1. Tunjukkan persamaan di pilihan output");
 		System.out.println("2. Cari Y dengan X tertentu");
 		inputInt = mainProgramReader.nextInt();
 		switch (inputInt) {
 			case 1: {
-				interpolasi.write();
+				interpolasi.write(outputWriter);
 				break;
 			}
 			case 2: {
