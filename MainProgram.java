@@ -53,7 +53,7 @@ public class MainProgram {
 		}
 	}
 
-	void launchMenu() throws IOException {
+	void launchMenu() throws Exception {
 		System.out.println();
 		System.out.println("===================");
 		System.out.println("TUGAS BESAR ALGEO 1");
@@ -101,7 +101,7 @@ public class MainProgram {
 		launchMenu();
 	}
 
-	void launchMatriks() {
+	void launchMatriks() throws Exception {
 		System.out.println("--Masukkan Data--");
 		int jmlBaris = inputReader.nextInt();
 		int jmlKolom = inputReader.nextInt();
@@ -127,7 +127,7 @@ public class MainProgram {
 		}
 	}
 
-	void launchSPL() {
+	void launchSPL() throws IOException {
 		System.out.println("--Masukkan Data--");
 		int jmlVariabel = inputReader.nextInt();
 		int jmlPersamaan = inputReader.nextInt();
@@ -138,7 +138,7 @@ public class MainProgram {
 		sistemPersamaanLinear.write(outputWriter);
 	}
 
-	void launchInterpolasi() {
+	void launchInterpolasi() throws IOException {
 		System.out.println("--Masukkan Data--");
 		int jmlTitik = inputReader.nextInt();
 		Interpolasi interpolasi = new Interpolasi(jmlTitik);

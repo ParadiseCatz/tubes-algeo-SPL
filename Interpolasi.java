@@ -3,14 +3,14 @@ import java.io.*;
 
 public class Interpolasi {
 	private int jmlTitik;
-	SistemPersamaanLinear persamaan;
+	private SistemPersamaanLinear persamaan;
 
 	public Interpolasi(int jmlTitik) {
 		this.jmlTitik = jmlTitik;
-		persamaan = new SistemPersamaanLinear();
+		persamaan = new SistemPersamaanLinear(jmlTitik,jmlTitik);
 	}
 	public void read(InputReader in) throws IOException {
-		Matrix m = new Matrix(jmlTitik-1,jmlTitik);
+		Matrix m = new Matrix(jmlTitik,jmlTitik+1);
 		
 		for (int i=0;i<jmlTitik;i++) {
 			double x = in.nextDouble();
@@ -28,15 +28,15 @@ public class Interpolasi {
 		in.close();
 	}
 
-	public void solve() {
+	public void solve() throws IOException {
 		persamaan.solve();
 	}
 
-	public void write(BufferedWriter writer) {
-		writer.write(Double.toString(matriks[i][jmlTitik]));
+	public void write(BufferedWriter writer) throws IOException {
+		writer.write(Double.toString(persamaan.getMatriks().getEl(0,jmlTitik)));
 		for (int i=1;i<jmlTitik;i++)
 		{
-			writer.write(" + " + matriks[i][jmlTitik] + " x^" + i);
+			writer.write(" + " + persamaan.getMatriks().getEl(i,jmlTitik) + " x^" + i);
 		}
 		writer.write(" = y");
 		writer.newLine();
@@ -50,8 +50,8 @@ public class Interpolasi {
 
 		for (int i=0;i<jmlTitik;i++)
 		{
-			ans = ans+(temp*matriks[i][jmlTitik]);
-			temp = temp*x;
+			ans = ans + (temp * persamaan.getMatriks().getEl(i,jmlTitik));
+			temp = temp * x;
 		}
 		return ans;
 	}
