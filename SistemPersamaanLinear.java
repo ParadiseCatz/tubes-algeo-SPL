@@ -40,7 +40,7 @@ public class SistemPersamaanLinear{
 				++ cnt;
 				
 			}
-			matriks.setEl(i,mapVariabel.get(var),num);
+			matriks.setEl(i,mapVariabel.get(var),op.equals("-") ? -num : num);
 			while (!op.equals("=")) {
 				num = in.nextDouble();
 				var = in.nextString();
@@ -51,7 +51,7 @@ public class SistemPersamaanLinear{
 					listVariabel[cnt] = var;
 					++ cnt;
 				}
-				matriks.setEl(i,mapVariabel.get(var),num);
+				matriks.setEl(i,mapVariabel.get(var),op.equals("-") ? -num : num);
 
 			}
 			num = in.nextDouble();
