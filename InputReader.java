@@ -9,6 +9,10 @@ public class InputReader{
 		this.in = in;
 	}
 
+    public void close() throws IOException {
+        in.close();
+    }
+
     String nextToken() throws IOException {
         while (tokenizer == null || !tokenizer.hasMoreTokens()) {
             String line = in.readLine();
@@ -39,5 +43,4 @@ public class InputReader{
     char nextChar() throws IOException {
         return (char)in.read();
     }
-	
 }
