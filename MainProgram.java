@@ -32,6 +32,7 @@ public class MainProgram {
 				inputReader = new InputReader(new BufferedReader(new InputStreamReader(new FileInputStream(inputString))));				
 			} catch (FileNotFoundException e) {
 				System.out.println("File tidak ditemukan");
+				System.exit(0);
 			}
 
 		}
@@ -47,6 +48,7 @@ public class MainProgram {
 				outputWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(inputString)));
 			} catch (FileNotFoundException e) {
 				System.out.println("File tidak ditemukan");
+				System.exit(0);
 			}
 
 		}

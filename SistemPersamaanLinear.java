@@ -71,7 +71,7 @@ public class SistemPersamaanLinear{
 
     	try {
     		matriks.eliminateUsingGaussJordanMethod();
-    		if (jmlPersamaan == jmlVariabel)
+    		if (jmlPersamaan <= jmlVariabel)
     			solved = true;
     		if (jmlPersamaan > jmlVariabel) {
 				if (matriks.getEl(jmlVariabel, jmlVariabel) == 0)
