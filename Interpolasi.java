@@ -9,6 +9,7 @@ public class Interpolasi {
 		this.jmlTitik = jmlTitik;
 		persamaan = new SistemPersamaanLinear(jmlTitik,jmlTitik);
 	}
+	
 	public void read(InputReader in) throws IOException {
 		Matrix m = new Matrix(jmlTitik,jmlTitik+1);
 		
@@ -25,7 +26,6 @@ public class Interpolasi {
 
 		}
 		persamaan.setMatriks(m);
-		in.close();
 	}
 
 	public void solve() throws IOException {
@@ -41,7 +41,6 @@ public class Interpolasi {
 		writer.write(" = y");
 		writer.newLine();
 		writer.flush();
-		writer.close();
 	}
 
 	public double findY(double x) {

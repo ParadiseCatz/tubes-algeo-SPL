@@ -65,7 +65,6 @@ public class SistemPersamaanLinear{
 			mapVariabel.put("variabel" + cntFiller,cnt);
 			listVariabel[cnt] = "variabel" + cntFiller;
 		}
-		in.close();
 	}
 	
 	public void solve() throws NumberFormatException, IOException {
@@ -102,7 +101,6 @@ public class SistemPersamaanLinear{
 				writer.newLine();
 			}
 			writer.flush();
-			writer.close();
 		} else {
 			System.out.println("Sistem Persamaan belum di selesaikan");
 		}
