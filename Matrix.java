@@ -1,5 +1,6 @@
 import java.util.*;
 import java.math.*;
+import java.io.*;
 
 public class Matrix {
 
@@ -73,5 +74,28 @@ public class Matrix {
         M[i][k] = 0;
       }
     }
+  }
+
+  public void read(InputReader in) throws IOException {
+    for (int i = 0; i < n; ++i) {
+      for (int j = 0; j < m; ++j) {
+        M[i][j] = in.nextDouble();
+      }
+    }
+    in.close();
+  }
+
+  public void write(BufferedWriter writer) throws IOException {
+    for (int i = 0; i < n; ++i) {
+      for (int j = 0; j < m; ++j) {
+        if (j != 0) {
+          writer.write(" ");
+        }
+        writer.write(Double.toString(M[i][j]));
+      }
+      writer.newLine();
+    }
+    writer.flush();
+    writer.close();
   }
 }

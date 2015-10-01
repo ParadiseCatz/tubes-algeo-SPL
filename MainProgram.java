@@ -1,7 +1,7 @@
 import java.util.*;
 import java.io.*;
 
-public class AnthonyGanteng {
+public class MainProgram {
 
 	InputReader mainProgramReader, inputReader;
 	BufferedWriter outputWriter;
@@ -123,7 +123,7 @@ public class AnthonyGanteng {
 
 	public static void main(String[] args) {
 		try {
-			new AnthonyGanteng().run();
+			new MainProgram().run();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

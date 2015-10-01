@@ -53,20 +53,15 @@ public class TestMatrix {
     void solve() throws NumberFormatException, IOException {
     	n = nextInt();
     	m = nextInt();
-    	double[][] mat = new double[n][m];
-    	for (int i = 0; i < n; ++i) {
-    		for (int j = 0; j < m; ++j) {
-    			mat[i][j] = nextDouble();
-    		}
-    	}
     	Matrix testMatrix = new Matrix(n, m);
-    	testMatrix.setM(mat);
+        testMatrix.read(new InputReader(in));
     	try {
     		testMatrix.eliminateUsingGaussMethod();
     	} catch (Exception e) {
     		e.printStackTrace();
     	}
-    	printMatrix(testMatrix.getM());
+        BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
+    	testMatrix.write(writer);
     	System.out.println();
 
     	try {
@@ -74,16 +69,7 @@ public class TestMatrix {
     	} catch (Exception e) {
     		e.printStackTrace();
     	}
-    	printMatrix(testMatrix.getM());
-    }
-
-    void printMatrix(double[][] mat) {
-    	for (int i = 0; i < n; ++i) {
-    		for (int j = 0; j < m; ++j) {
-    			System.out.print(mat[i][j] + " ");
-    		}
-    		System.out.println();
-    	}
+    	testMatrix.write(writer);
     }
 
 	public static void main(String []args) {

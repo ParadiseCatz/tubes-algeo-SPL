@@ -1,5 +1,5 @@
 compile:
-	javac Matrix.java TestMatrix.java 
+	javac *.java
 
 run-test:
 	java -cp . TestMatrix
