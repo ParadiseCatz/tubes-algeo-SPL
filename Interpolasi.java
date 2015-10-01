@@ -3,8 +3,12 @@ import java.io.*;
 
 public class Interpolasi {
 	private int jmlTitik;
-	SistemPersamaanLinear persamaan = new SistemPersamaanLinear();
+	SistemPersamaanLinear persamaan;
 
+	public Interpolasi(int jmlTitik) {
+		this.jmlTitik = jmlTitik;
+		persamaan = new SistemPersamaanLinear();
+	}
 	public void read(InputReader in) throws IOException {
 		Matrix m = new Matrix(jmlTitik-1,jmlTitik);
 		
