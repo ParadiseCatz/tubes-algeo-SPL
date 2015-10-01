@@ -2,8 +2,8 @@ import java.util.*;
 import java.io.*;
 	
 public class InputReader{	
-	StringTokenizer tokenizer;
-    BufferedReader in;
+	private StringTokenizer tokenizer;
+    private BufferedReader in;
 	
 	public InputReader(BufferedReader in) {
 		this.in = in;
