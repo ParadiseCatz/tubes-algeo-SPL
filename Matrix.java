@@ -82,7 +82,6 @@ public class Matrix {
         M[i][j] = in.nextDouble();
       }
     }
-    in.close();
   }
 
   public void write(BufferedWriter writer) throws IOException {
@@ -96,6 +95,5 @@ public class Matrix {
       writer.newLine();
     }
     writer.flush();
-    writer.close();
   }
 }

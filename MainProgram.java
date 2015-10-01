@@ -53,7 +53,7 @@ public class MainProgram {
 		}
 	}
 
-	void launchMenu() throws IOException {
+	void launchMenu() throws Exception {
 		System.out.println();
 		System.out.println("===================");
 		System.out.println("TUGAS BESAR ALGEO 1");
@@ -89,6 +89,9 @@ public class MainProgram {
 				break;
 			}
 			case 6: {
+				mainProgramReader.close();
+				inputReader.close();
+				outputWriter.close();
 				System.exit(0);
 				break;
 			}
@@ -101,22 +104,47 @@ public class MainProgram {
 		launchMenu();
 	}
 
-	void launchMatriks() {
-
+	void launchMatriks() throws Exception {
+		System.out.println("--Masukkan Data--");
+		int jmlBaris = inputReader.nextInt();
+		int jmlKolom = inputReader.nextInt();
+		Matrix matriks = new Matrix(jmlBaris,jmlKolom);
+		matriks.read(inputReader);
+		System.out.println("--MATRIKS--");
+		System.out.println("1. Eliminasi menggunakan metode Gauss");
+		System.out.println("2. Eliminasi menggunakan metode Gauss-Jordan");
+		inputInt = mainProgramReader.nextInt();
+		switch (inputInt) {
+			case 1: {
+				matriks.eliminateUsingGaussMethod();
+				matriks.write(outputWriter);
+				break;
+			}
+			case 2: {
+				matriks.eliminateUsingGaussJordanMethod();
+				matriks.write(outputWriter);
+				break;
+			}
+			default: {
+				System.out.println("Pilihan Salah!");
+			}
+		}
 	}
 
-	void launchSPL() {
+	void launchSPL() throws IOException {
 		System.out.println("--Masukkan Data--");
 		int jmlVariabel = inputReader.nextInt();
 		int jmlPersamaan = inputReader.nextInt();
+		System.out.println("--Masukkan Data--");
 		SistemPersamaanLinear sistemPersamaanLinear = new SistemPersamaanLinear(jmlVariabel,jmlPersamaan);
 		sistemPersamaanLinear.read(inputReader);
+		System.out.println("--Masukkan Data--");
 		sistemPersamaanLinear.solve();
 		System.out.println("---SISTEM PERSAMAAN LINEAR---");
 		sistemPersamaanLinear.write(outputWriter);
 	}
 
-	void launchInterpolasi() {
+	void launchInterpolasi() throws IOException {
 		System.out.println("--Masukkan Data--");
 		int jmlTitik = inputReader.nextInt();
 		Interpolasi interpolasi = new Interpolasi(jmlTitik);
