@@ -34,4 +34,16 @@ public class Interpolasi {
 		}
 		writer.write(" = " + matriks[jmlTitik-1][jmlTitik])
 	}
+
+	public double findY(double x) {
+		double temp = 1;
+		double ans = 0;
+
+		for (int i=0;i<jmlTitik;i++)
+		{
+			ans = ans+(temp*matriks[i][jmlTitik]);
+			temp = temp*x;
+		}
+		return ans;
+	}
 }
