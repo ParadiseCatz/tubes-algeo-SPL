@@ -5,17 +5,19 @@ public class SistemPersamaanLinear{
 	private int jmlVariabel;
 	private int jmlPersamaan;
 	private Matrix matriks;
-	private TreeMap <String,Integer> mapVariabel; 	
+	private TreeMap <String,Integer> mapVariabel;
+	private boolean solved;
 	
 	public SistemPersamaanLinear(int jmlVariabel, int jmlPersamaan){
 		this.jmlVariabel = jmlVariabel;
 		this.jmlPersamaan = jmlPersamaan;
 		matriks = new Matrix(jmlPersamaan,jmlVariabel+1);
 		mapVariabel = new TreeMap<String,Integer>();
+		solved = false;
 	}
 	
 	public Matrix getMatriks(){
-		return this.matriks;	
+		return this.matriks;	 
 	}
 
 	public void setMatriks(Matrix matriks){
@@ -24,8 +26,7 @@ public class SistemPersamaanLinear{
 
 	public void read(InputReader in) throws IOException {
 		
-		
-		for (int i=1;i<=jmlPersamaan;i++) {
+		for (int i=0;i<jmlPersamaan;i++) {
 			double num = in.nextDouble();
 			String var = in.nextString();
 			String op = in.nextString();
@@ -33,12 +34,11 @@ public class SistemPersamaanLinear{
 			
 			if (!mapVariabel.containsKey(var)) {
 				mapVariabel.put(var,cnt);
-				matriks.setEl(i,mapVariabel.get(var),num);
 				++ cnt;
 				
 			}
-			while (op!="=" && in.tokenizer.hasMoreTokens()) {
-				matriks.setEl(i,mapVariabel.get(var),num);
+			matriks.setEl(i,mapVariabel.get(var),num);
+			while (!op.equals("=")) {
 				num = in.nextDouble();
 				var = in.nextString();
 				op = in.nextString();
@@ -48,35 +48,42 @@ public class SistemPersamaanLinear{
 					
 					++ cnt;
 				}
+				matriks.setEl(i,mapVariabel.get(var),num);
 
 			}
+			num = in.nextDouble();
 			matriks.setEl(i,jmlVariabel,num);
 		}
 		
 	}
 	
 	public void solve() throws NumberFormatException, IOException {
-    	int n,m;
-		
-		
-    	try {
-    		matriks.eliminateUsingGaussMethod();
-    	} catch (Exception e) {
-    		e.printStackTrace();
-    	}
-    	System.out.println();
 
     	try {
     		matriks.eliminateUsingGaussJordanMethod();
+    		solved = true;
     	} catch (Exception e) {
     		e.printStackTrace();
     	}
+
+
     }
 		
-		
-		
+	public void write(BufferedWriter writer) {
+		if (solved) {
+			for(Map.Entry<String,Integer> entry : treeMap.entrySet()) {
+				String variableName = entry.getKey();
+				Integer row = entry.getValue();
 
-	
-	
+				System.out.println(variableName + " = ");
+
+				for (int i = Math.min(jmlVariabel, jmlPersamaan); i < jmlVariabel; ++i) {
+					
+				}
+			}
+		} else {
+			System.out.println("Sistem Persamaan belum di selesaikan");
+		}
+	}
 	
 }
